@@ -1,49 +1,60 @@
 var arr = [];
 var chosenarr = [];
-var level = 1;
+var level = 0;
 var sqclicks = 0;
 makearr();
 
 $(document).keyup(function (event) {
-    $(".square").off('click', process);
+    // $(".square").off('click', process);
     if (event.key === 's') {
+        chosenarr=[];
+        nextlevel();
         console.log(arr);
         $("h1").text("Level " + level);
         setTimeout(function () { glow(); }, 600);
-        $(".square").on('click', process);
+        // $(".square").on('click', process);
     };
     if (event.key === 'r') {
+        chosenarr=[];
         level = 1;
         $("h1").text("Level " + level);
         setTimeout(function () { glow(); }, 600);
-        $(".square").on('click', process);
-    }
+        // $(".square").on('click', process);
+    };
+    if (event.key === 't') {
+        chosenarr=[];
+        $("h1").text("Level " + level);
+        setTimeout(function () { glow(); }, 600);
+        // $(".square").on('click', process);
+    };
 });
 
-// $(".square").on('click', process);
+$(".square").on('click', process);
 
 
 $('#playButton').on('touchstart', function () {
-    $(".square").off('click', process);
-    console.log('Touch event: Play button touched');
+    chosenarr=[];
+    nextlevel();
+    console.log(arr);
     $("h1").text("Level " + level);
     setTimeout(function () { glow(); }, 600);
-    $(".square").on('click', process);
+    // $(".square").on('click', process);
 });
 
 $('#restartButton').on('touchstart', function () {
-    $(".square").off('click', process);
-    console.log('Touch event: Restart button touched');
+    chosenarr=[];
     level = 1;
     $("h1").text("Level " + level);
     setTimeout(function () { glow(); }, 600);
-    $(".square").on('click', process);
+    // $(".square").on('click', process);
 });
 
 $('#tryAgainButton').on('touchstart', function () {
-    console.log('Touch event: Try Again button touched');
+    chosenarr = [];
     $("h1").text("Level " + level);
     setTimeout(function () { glow(); }, 600);
+    // $(".square").on('click', process);
+
 });
 
 function pressed(chosenSquare) {
@@ -69,7 +80,7 @@ function runLoopWithDelay(limit) {
         euuu(i);
         i++;
         if (i < limit) {
-            setTimeout(runIteration, 700); 
+            setTimeout(runIteration, 700);
         }
     }
     runIteration();
@@ -104,12 +115,11 @@ function check(chosenarr) {
         };
     };
     if (flag === 1) {
-        $("h1").html("Level " + level + " passed"+"<br>Press S For Next Level");
+        $("h1").html("Level " + level + " passed" + "<br>Press S For Next Level");
         // setTimeout(function () {
         //     nextlevel();
         //     $("h1").text("Press S For Next Level");
         // }, 2000);
-        nextlevel();
         chosenarr = [];
         sqclicks = 0;
     } else if (flag === 0) {
@@ -119,7 +129,7 @@ function check(chosenarr) {
         chosenarr = [];
         sqclicks = 0;
         setTimeout(function () {
-            $("h1").html("Press S For Another Try <br>Press R for Restart");
+            $("h1").html("Press T For Another Try <br>Press R for Restart");
         }, 1000);
     }
 }
